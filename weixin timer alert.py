@@ -1,5 +1,6 @@
-#author: azhaochen
-#time: 2019-03-19
+# author: azhaochen
+# time: 2019-03-19
+# how to setup python+selenium+chrome enviroment: https://cloud.tencent.com/developer/article/1404558
 
 import time
 import requests
