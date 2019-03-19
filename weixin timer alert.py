@@ -39,9 +39,9 @@ def loginCsdn():
 	password.clear()
 	password.send_keys('bbbbbbb')			#TODO: your csdn password
 	print(1)
-	wait.until(EC.text_to_be_present_in_element_value((By.CSS_SELECTOR, "#all"), 'c4501srsy'))
+	wait.until(EC.text_to_be_present_in_element_value((By.CSS_SELECTOR, "#all"), 'aaaaaaa'))
 	print(2)
-	wait.until(EC.text_to_be_present_in_element_value((By.CSS_SELECTOR, "#password-number"), 'srsy761212804'))
+	wait.until(EC.text_to_be_present_in_element_value((By.CSS_SELECTOR, "#password-number"), 'bbbbbbb'))
 	print(3)
 	submit.click()
 	time.sleep(3)
