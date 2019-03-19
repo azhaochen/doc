@@ -1,3 +1,6 @@
+#author: azhaochen
+#time: 2019-03-19
+
 import time
 import requests
 import json
@@ -15,31 +18,6 @@ option = ''
 browser = ''
 
 
-def loginShimo():
-	loginUrl = r"https://shimo.im/login"
-	wait = WebDriverWait(browser, 10);
-	browser.get(loginUrl)
-	print(browser.title)
-	#userInput = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/div[1]/div[1]/div/div/div[2]/div/div/div[1]/div[1]/div/input')));
-	userInput = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='mobileOrEmail']")));	#css selector : https://saucelabs.com/resources/articles/selenium-tips-css-selectors
-	password  = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[name='password']")));
-	submit    = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "button.sm-button")));
-	
-	userInput.clear()
-	userInput.send_keys('19928803232')
-	password.clear()
-	password.send_keys('shirishiyue')
-	print(1)
-	wait.until(EC.text_to_be_present_in_element_value((By.CSS_SELECTOR, "input[name='mobileOrEmail']"), '19928803232'))
-	print(2)
-	wait.until(EC.text_to_be_present_in_element_value((By.CSS_SELECTOR, "input[name='password']"), 'shirishiyue'))
-	print(3)
-	submit.click()
-
-	#browser.implicitly_wait(10) # wait login jump
-
-
-
 def loginCsdn():
 	loginUrl = r"https://passport.csdn.net/login"
 	wait = WebDriverWait(browser, 10);
@@ -55,9 +33,9 @@ def loginCsdn():
 	submit    = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/div/div/div[2]/div[4]/form/div/div[6]/div/button')));
 	
 	userInput.clear()
-	userInput.send_keys('c4501srsy')
+	userInput.send_keys('aaaaaaa')			#TODO: your csdn username
 	password.clear()
-	password.send_keys('srsy761212804')
+	password.send_keys('bbbbbbb')			#TODO: your csdn password
 	print(1)
 	wait.until(EC.text_to_be_present_in_element_value((By.CSS_SELECTOR, "#all"), 'c4501srsy'))
 	print(2)
@@ -70,7 +48,7 @@ def loginCsdn():
 	
 
 def getNotes():
-	browser.get("https://blog.csdn.net/c4501srsy/article/details/88663564")		#secret self notes
+	browser.get("https://blog.csdn.net/c4501srsy/article/details/88663564")		#TODO: your own csdn secret page
 	print(browser.title)
 	html = browser.find_element_by_id('content_views').get_attribute('innerHTML').strip()
 	print(html)
@@ -78,8 +56,8 @@ def getNotes():
 
 	
 def sendPushBear(content):
-	apiUrl 	= "https://pushbear.ftqq.com/sub"
-	key 	= "11750-b091cbfc69093b366214d5e93419db6b"
+	apiUrl 	= "https://pushbear.ftqq.com/sub"	#TODO: pushbear api:  https://pushbear.ftqq.com
+	key 	= "aaaaaaa"				#TODO: your own pushbear key
 	
 	payload = {
 	  "sendkey": key,
