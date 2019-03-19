@@ -1,6 +1,7 @@
 # author: azhaochen
 # time: 2019-03-19
 # how to setup python+selenium+chrome enviroment: https://cloud.tencent.com/developer/article/1404558
+# how to use ? just replace all the TODOs,  and run python.
 
 import time
 import requests
