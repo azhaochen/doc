@@ -158,7 +158,7 @@ Pool.prototype._removeSocketFromPool = function(socket){
     if(!socket){
         return;
     }
-    var ori_tag = self.getTag(socket);
+    var ori_tag = this.getTag(socket);
     for(var i in this.available){
         if(this.available[i] === socket){   //删除这个socket
             this.available.splice(i, 1);
@@ -229,6 +229,7 @@ Pool.prototype._fillPool = function() {
   });
 
   sock.connect(server.port, server.host);
+  sock.connecting_tag = servertag;
 
   this._inspect('_fillPool end, now waiting connected...');
 }
@@ -546,9 +547,12 @@ Pool.prototype._recommend = function() {
   for (var i = 0; i < serverkeys.length; i++) {
     var requirement = Math.round(max / (total_weight / this.servers[serverkeys[i]].weight));  //当前host（serverkeys[i]）最大连接数量的分配
     // requirement met?
-    var sockLenForServer = 0;                                                                 //当前host（serverkeys[i]）目前连接数量
+    var sockLenForServer = 0;                                                                 //当前host（serverkeys[i]）目前连接数量，包含正在连接的
     if(this._sockets[serverkeys[i]]){
       sockLenForServer = Object.keys(this._sockets[serverkeys[i]]).length;
+    }
+    for(sock of this._sockets_connecting){
+      if(sock.connecting_tag == serverkeys[i])  sockLenForServer++; //包括连接中的，用于初始并发新建大量socket的情况。
     }
     var thisPropertion = sockLenForServer / requirement;                                      //当前host（（serverkeys[i]））连接数使用比例，不能大于1
 
